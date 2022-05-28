@@ -2,11 +2,18 @@ package com.sistema.blog.dto;
 
 import java.util.Set;
 
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.sistema.blog.entidades.Comentario;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PublicacionDTO {
 
 	private Long id;
@@ -22,50 +29,5 @@ public class PublicacionDTO {
 	@NotEmpty
 	private String contenido;
 	
-	private Set<Comentario> comentarios;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public String getContenido() {
-		return contenido;
-	}
-
-	public void setContenido(String contenido) {
-		this.contenido = contenido;
-	}
-
-	public Set<Comentario> getComentarios() {
-		return comentarios;
-	}
-
-	public void setComentarios(Set<Comentario> comentarios) {
-		this.comentarios = comentarios;
-	}
-
-	public PublicacionDTO() {
-		super();
-	}
 
 }
