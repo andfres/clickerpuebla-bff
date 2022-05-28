@@ -1,7 +1,12 @@
 package com.sistema.blog.dto;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 
 public class PublicacionRespuesta {
 
@@ -12,56 +17,5 @@ public class PublicacionRespuesta {
 	private int totalPaginas;
 	private boolean ultima;
 
-	public List<PublicacionDTO> getContenido() {
-		return contenido;
-	}
-
-	public void setContenido(List<PublicacionDTO> contenido) {
-		this.contenido = contenido;
-	}
-
-	public int getNumeroPagina() {
-		return numeroPagina;
-	}
-
-	public void setNumeroPagina(int numeroPagina) {
-		this.numeroPagina = numeroPagina;
-	}
-
-	public int getMedidaPagina() {
-		return medidaPagina;
-	}
-
-	public void setMedidaPagina(int medidaPagina) {
-		this.medidaPagina = medidaPagina;
-	}
-
-	public long getTotalElementos() {
-		return totalElementos;
-	}
-
-	public void setTotalElementos(long totalElementos) {
-		this.totalElementos = totalElementos;
-	}
-
-	public int getTotalPaginas() {
-		return totalPaginas;
-	}
-
-	public void setTotalPaginas(int totalPaginas) {
-		this.totalPaginas = totalPaginas;
-	}
-
-	public boolean isUltima() {
-		return ultima;
-	}
-
-	public void setUltima(boolean ultima) {
-		this.ultima = ultima;
-	}
-
-	public PublicacionRespuesta() {
-		super();
-	}
 
 }

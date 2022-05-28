@@ -8,7 +8,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class ComentarioDTO {
 

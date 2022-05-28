@@ -1,5 +1,9 @@
 package com.sistema.blog.seguridad;
 
+
+import lombok.Data;
+
+@Data
 public class JWTAuthResonseDTO {
 
 	private String tokenDeAcceso;
@@ -15,21 +19,4 @@ public class JWTAuthResonseDTO {
 		this.tokenDeAcceso = tokenDeAcceso;
 		this.tipoDeToken = tipoDeToken;
 	}
-
-	public String getTokenDeAcceso() {
-		return tokenDeAcceso;
-	}
-
-	public void setTokenDeAcceso(String tokenDeAcceso) {
-		this.tokenDeAcceso = tokenDeAcceso;
-	}
-
-	public String getTipoDeToken() {
-		return tipoDeToken;
-	}
-
-	public void setTipoDeToken(String tipoDeToken) {
-		this.tipoDeToken = tipoDeToken;
-	}
-
 }
