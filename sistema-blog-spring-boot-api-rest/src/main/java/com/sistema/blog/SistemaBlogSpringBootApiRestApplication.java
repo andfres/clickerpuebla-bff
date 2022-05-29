@@ -3,6 +3,8 @@ package com.sistema.blog;
 import com.sistema.blog.dto.ComentarioDTO;
 import com.sistema.blog.dto.PublicacionDTO;
 import com.sistema.blog.entidades.Publicacion;
+import com.sistema.blog.entidades.Rol;
+import com.sistema.blog.repositorio.RolRepositorio;
 import com.sistema.blog.servicio.ComentarioServicio;
 import com.sistema.blog.servicio.PublicacionServicio;
 import org.modelmapper.ModelMapper;
@@ -54,6 +56,11 @@ public class SistemaBlogSpringBootApiRestApplication {
 			aaaaa.setCuerpo("EEEEsdfsdfdsfsdfsdfsdfsdfsdfdsfsdfsdfdsf");
 
 			comentarioServicio.crearComentario(1L, aaaaa);
+
+			Rol rol = new Rol(1 , "ROLE_ADMIN");
+
+
+			System.out.println("rol:" + rol.getNombre());
 
 
 		};

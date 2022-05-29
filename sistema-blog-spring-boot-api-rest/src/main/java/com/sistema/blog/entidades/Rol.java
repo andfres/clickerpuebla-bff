@@ -1,5 +1,6 @@
 package com.sistema.blog.entidades;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "roles")
 public class Rol {
@@ -20,7 +22,7 @@ public class Rol {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(length = 60)
+	//@Column(length = 60)
 	private String nombre;
 
 

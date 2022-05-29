@@ -16,6 +16,4 @@ public class ErrorDetalles {
 	private String detalles;
 
 
-
-
 }
