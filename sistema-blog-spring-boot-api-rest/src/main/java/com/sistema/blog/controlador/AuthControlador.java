@@ -89,7 +89,10 @@ public class AuthControlador {
 		
 		Rol roles = rolRepositorio.findByNombre("ROLE_ADMIN").get();
 		System.out.println("5");
-		usuario.setRoles(Collections.singleton(roles));
+
+		//usuario.setRoles(Collections.singleton(roles));
+
+
 		System.out.println("6");
 		usuarioRepositorio.save(usuario);
 		System.out.println("7");
