@@ -2,6 +2,7 @@ package com.sistema.blog.controlador;
 
 import javax.validation.Valid;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,23 +44,42 @@ public class PublicacionControlador {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
+	@Operation(summary = "necesario ser ADMIN")
 	@PostMapping
 	public ResponseEntity<PublicacionDTO> guardarPublicacion(@Valid @RequestBody PublicacionDTO publicacionDTO) {
 		return new ResponseEntity<>(publicacionServicio.crearPublicacion(publicacionDTO), HttpStatus.CREATED);
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/{id}")
+	@Operation(summary = "necesario ser ADMIN")
 	public ResponseEntity<PublicacionDTO> actualizarPublicacion(@Valid @RequestBody PublicacionDTO publicacionDTO,
 			@PathVariable(name = "id") long id) {
 		PublicacionDTO publicacionRespuesta = publicacionServicio.actualizarPublicacion(publicacionDTO, id);
 		return new ResponseEntity<>(publicacionRespuesta, HttpStatus.OK);
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@DeleteMapping("/{id}")
+	@Operation(summary = "necesario ser ADMIN")
 	public ResponseEntity<String> eliminarPublicacion(@PathVariable(name = "id") long id) {
 		publicacionServicio.eliminarPublicacion(id);
 		return new ResponseEntity<>("Publicacion eliminada con exito", HttpStatus.OK);
 	}
+
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/admin")
+	public String hello2() {
+		return "Hello admin";
+	}
+
+	@GetMapping("/noadmin")
+	public String hello() {
+		return "Hello no admin";
+	}
+
+
+
 }

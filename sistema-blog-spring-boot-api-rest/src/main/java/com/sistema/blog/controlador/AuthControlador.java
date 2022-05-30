@@ -47,15 +47,11 @@ public class AuthControlador {
 	public ResponseEntity<JWTAuthResonseDTO> authenticateUser(@RequestBody LoginDTO loginDTO){
 
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getUsernameOrEmail(), loginDTO.getPassword()));
-
-
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		//obtenemos el token del jwtTokenProvider
 		String token = jwtTokenProvider.generarToken(authentication);
 
-		System.out.println("token" + token );
-		
 		return ResponseEntity.ok(new JWTAuthResonseDTO(token));
 	}
 	
@@ -79,23 +75,14 @@ public class AuthControlador {
 		
 		Usuario usuario = new Usuario();
 		usuario.setNombre(registroDTO.getNombre());
-		System.out.println("1");
 		usuario.setUsername(registroDTO.getUsername());
-		System.out.println("2");
 		usuario.setEmail(registroDTO.getEmail());
-		System.out.println("3");
 		usuario.setPassword(passwordEncoder.encode(registroDTO.getPassword()));
-		System.out.println("4");
-		
 		Rol roles = rolRepositorio.findByNombre("ROLE_ADMIN").get();
-		System.out.println("5");
+		usuario.setRoles(Collections.singleton(roles));
 
-		//usuario.setRoles(Collections.singleton(roles));
-
-
-		System.out.println("6");
 		usuarioRepositorio.save(usuario);
-		System.out.println("7");
+		System.out.println("Usuario registrado exitosamente");
 		return new ResponseEntity<>("Usuario registrado exitosamente",HttpStatus.OK);
 	}
 }

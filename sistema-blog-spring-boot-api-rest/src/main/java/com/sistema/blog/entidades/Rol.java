@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "roles")
 public class Rol {

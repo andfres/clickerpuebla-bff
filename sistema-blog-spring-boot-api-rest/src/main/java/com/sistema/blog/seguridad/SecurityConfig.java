@@ -1,4 +1,4 @@
-package com.sistema.blog.configuracion;
+package com.sistema.blog.seguridad;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import javax.persistence.CascadeType;
 
 import com.sistema.blog.seguridad.CustomUserDetailsService;
 import com.sistema.blog.seguridad.JwtAuthenticationEntryPoint;
@@ -52,6 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		    .and()
 		    .authorizeRequests().antMatchers(HttpMethod.GET, "/api/**").permitAll()
 		    .antMatchers("/api/auth/**").permitAll()
+			.antMatchers("/api/publicaciones/**").permitAll()
+
 		    .anyRequest()
 		    .authenticated();
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -25,7 +25,7 @@ public class Comentario {
 	private String email;
 	private String cuerpo;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY )
 	@JoinColumn(name = "publicacion_id", nullable = false)
 	private Publicacion publicacion;
 

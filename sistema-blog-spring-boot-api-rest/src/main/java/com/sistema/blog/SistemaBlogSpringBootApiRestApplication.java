@@ -57,10 +57,6 @@ public class SistemaBlogSpringBootApiRestApplication {
 
 			comentarioServicio.crearComentario(1L, aaaaa);
 
-			Rol rol = new Rol(1 , "ROLE_ADMIN");
-
-
-			System.out.println("rol:" + rol.getNombre());
 
 
 		};
