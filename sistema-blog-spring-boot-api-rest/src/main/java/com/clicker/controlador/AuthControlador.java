@@ -1,7 +1,11 @@
 package com.clicker.controlador;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
+import com.clicker.entidades.Manager;
 import com.clicker.repositorio.UsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,16 +34,12 @@ public class AuthControlador {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
-	
 	@Autowired
 	private RolRepositorio rolRepositorio;
-	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
 	
@@ -80,6 +80,8 @@ public class AuthControlador {
 		usuario.setPassword(passwordEncoder.encode(registroDTO.getPassword()));
 		Rol roles = rolRepositorio.findByNombre("ROLE_ADMIN").get();
 		usuario.setRoles(Collections.singleton(roles));
+
+
 
 		usuarioRepositorio.save(usuario);
 		System.out.println("Usuario registrado exitosamente");

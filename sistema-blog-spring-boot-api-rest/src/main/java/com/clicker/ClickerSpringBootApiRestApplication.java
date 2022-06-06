@@ -1,9 +1,5 @@
 package com.clicker;
 
-import com.clicker.dto.ComentarioDTO;
-import com.clicker.dto.PublicacionDTO;
-import com.clicker.servicio.ComentarioServicio;
-import com.clicker.servicio.PublicacionServicio;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -35,22 +31,12 @@ public class ClickerSpringBootApiRestApplication {
 	}
 
 	@Bean
-	CommandLineRunner run(PublicacionServicio publicacionServicio, ComentarioServicio comentarioServicio) {
+	CommandLineRunner run() {
 		return args -> {
 
 			System.out.println("eeeeeeeeeeeeee");
 
-			PublicacionDTO publicacion = new PublicacionDTO();
-			publicacion.setTitulo("titulooooooooo");
-			publicacion.setDescripcion("esto es una publicacion de prueba");
-			publicacion.setContenido("esto es el contenido de la pubblicacion");
-			publicacionServicio.crearPublicacion(publicacion);
 
-			ComentarioDTO aaaaa = new ComentarioDTO();
-			aaaaa.setNombre("EEEE");
-			aaaaa.setEmail("ee@gmail.com");
-			aaaaa.setCuerpo("EEEEsdfsdfdsfsdfsdfsdfsdfsdfdsfsdfsdfdsf");
-			comentarioServicio.crearComentario(1L, aaaaa);
 
 		};
 	}
