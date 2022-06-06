@@ -16,7 +16,21 @@ public class ManagerId implements Serializable {
         this.managerID = managerID;
     }
 
+
+
     // equals() and hashCode()
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ManagerId managerId = (ManagerId) o;
+        return managerID == managerId.managerID && userID.equals(managerId.userID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userID, managerID);
+    }
 }

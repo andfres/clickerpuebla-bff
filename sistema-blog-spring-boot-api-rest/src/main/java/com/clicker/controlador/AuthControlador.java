@@ -1,12 +1,10 @@
 package com.clicker.controlador;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import com.clicker.entidades.Manager;
 import com.clicker.repositorio.UsuarioRepositorio;
+import com.clicker.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +40,11 @@ public class AuthControlador {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private JwtTokenProvider jwtTokenProvider;
-	
+
+	@Autowired
+	private UsuarioServicio usuarioServicio;
+
+
 	@PostMapping("/iniciarSesion")
 	public ResponseEntity<JWTAuthResonseDTO> authenticateUser(@RequestBody LoginDTO loginDTO){
 
@@ -66,13 +68,13 @@ public class AuthControlador {
 
 			return new ResponseEntity<>("Ese nombre de usuario ya existe",HttpStatus.BAD_REQUEST);
 		}
-		
+
 		if(usuarioRepositorio.existsByEmail(registroDTO.getEmail())) {
 			System.out.println("ya existe email");
 
 			return new ResponseEntity<>("Ese email de usuario ya existe",HttpStatus.BAD_REQUEST);
 		}
-		
+
 		Usuario usuario = new Usuario();
 		usuario.setNombre(registroDTO.getNombre());
 		usuario.setUsername(registroDTO.getUsername());
@@ -81,9 +83,32 @@ public class AuthControlador {
 		Rol roles = rolRepositorio.findByNombre("ROLE_ADMIN").get();
 		usuario.setRoles(Collections.singleton(roles));
 
+		System.out.println("id user" + usuario.getId());
+		System.out.println("id user" + usuario.getEmail());
+
+		usuarioServicio.guardarUsuario(usuario);
+
+		Optional optional = usuarioServicio.obtenerPorEmail(usuario.getEmail());
+
+		Usuario use = (Usuario) optional.get();
+		System.out.println("id user guardado" + use.getId());
 
 
-		usuarioRepositorio.save(usuario);
+		Manager[] managers = {
+				new Manager(usuario.getId(), 1L, false),
+				new Manager(usuario.getId(), 2L, false),
+				new Manager(usuario.getId(), 3L, false),
+				new Manager(usuario.getId(), 5L, false),
+				new Manager(usuario.getId(), 4L, false),
+				new Manager(usuario.getId(), 6L, false),
+		};
+		List listaManagers = new ArrayList<Manager>(Arrays.asList(managers));
+
+		use.setManagers(listaManagers);
+
+
+
+
 		System.out.println("Usuario registrado exitosamente");
 		return new ResponseEntity<>("Usuario registrado exitosamente",HttpStatus.OK);
 	}

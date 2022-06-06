@@ -19,6 +19,8 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy=GenerationType.SEQUENCE)
+
     private long id;
 
     private String nombre;
@@ -54,29 +56,20 @@ public class Usuario {
 
     public Usuario() {
 
-        Manager[] managers = {
-                new Manager(),
-                new Manager(),
-                new Manager(),
-                new Manager(),
-                new Manager(),
-                new Manager(),
-        };
+//        Edificio[] edificios = {
+//                new Edificio(),
+//                new Edificio(),
+//                new Edificio(),
+//                new Edificio(),
+//                new Edificio(),
+//                new Edificio(),
+//        };
 
-        Edificio[] edificios = {
-                new Edificio(),
-                new Edificio(),
-                new Edificio(),
-                new Edificio(),
-                new Edificio(),
-                new Edificio(),
-        };
+//        List listaManagers = new ArrayList<Manager>(Arrays.asList(managers));
+//        List listaEdificios = new ArrayList<Edificio>(Arrays.asList(edificios));
+//
 
-        List listaManagers = new ArrayList<Manager>(Arrays.asList(managers));
-        List listaEdificios = new ArrayList<Edificio>(Arrays.asList(edificios));
-
-
-        this.managers = listaManagers;
-        this.edificios = listaEdificios;
+//        this.managers = listaManagers;
+//        this.edificios = listaEdificios;
     }
 }
