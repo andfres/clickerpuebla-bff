@@ -1,6 +1,9 @@
 package com.clicker.servicio;
 
+import com.clicker.dto.DineroDTO;
 import com.clicker.entidades.Usuario;
+import com.clicker.excepciones.ResourceNotFoundException;
+import com.clicker.excepciones.ResourceNotFoundException2;
 import com.clicker.repositorio.UsuarioRepositorio;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,10 +31,20 @@ public class UsuarioServicio {
         return usuarioRepositorio.findByEmail(email);
     }
 
-//    @Transactional
-//    public Usuario aaa(Usuario usuario) {
-//        return usuarioRepositorio.;
-//    }
+
+    @Transactional
+    public void actualizarDinero(DineroDTO dineroDTO, String email) {
+
+        Usuario usuario = usuarioRepositorio.findByEmail(email)
+               .orElseThrow(() -> new ResourceNotFoundException2("Publicacion", "email"));
+
+        usuario.setDinero(dineroDTO.getDinero());
+
+        Usuario usuarioActualizado = usuarioRepositorio.save(usuario);
+
+    };
+
+
 
 
 }

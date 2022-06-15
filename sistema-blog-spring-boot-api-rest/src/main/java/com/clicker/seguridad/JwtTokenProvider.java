@@ -61,5 +61,9 @@ public class JwtTokenProvider {
 			throw new BlogAppException(HttpStatus.BAD_REQUEST,"La cadena claims JWT esta vacia");
 		}
 	}
+
+	public String getJwtSecret() {
+		return jwtSecret;
+	}
 }
 

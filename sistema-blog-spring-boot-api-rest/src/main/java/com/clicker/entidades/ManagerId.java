@@ -7,12 +7,12 @@ import java.util.Objects;
 
 @NoArgsConstructor
 public class ManagerId implements Serializable {
-    private Long userID;
+    private String userEmail;
 
     private Long managerID;
 
     public ManagerId(Long userID, Long managerID) {
-        this.userID = userID;
+        this.userEmail = userEmail;
         this.managerID = managerID;
     }
 
@@ -26,11 +26,11 @@ public class ManagerId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ManagerId managerId = (ManagerId) o;
-        return managerID == managerId.managerID && userID.equals(managerId.userID);
+        return userEmail.equals(managerId.userEmail) && managerID.equals(managerId.managerID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userID, managerID);
+        return Objects.hash(userEmail, managerID);
     }
 }

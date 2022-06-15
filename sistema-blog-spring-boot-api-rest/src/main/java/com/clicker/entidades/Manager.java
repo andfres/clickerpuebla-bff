@@ -21,7 +21,7 @@ public class Manager {
 //	private long id;
 
     @Id
-    private Long userID;
+    private String userEmail;
     @Id
     private Long managerID;
 

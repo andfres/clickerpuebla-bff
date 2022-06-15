@@ -54,22 +54,5 @@ public class Usuario {
 //	private Set<Rol> roles = new HashSet<>();
 
 
-    public Usuario() {
 
-//        Edificio[] edificios = {
-//                new Edificio(),
-//                new Edificio(),
-//                new Edificio(),
-//                new Edificio(),
-//                new Edificio(),
-//                new Edificio(),
-//        };
-
-//        List listaManagers = new ArrayList<Manager>(Arrays.asList(managers));
-//        List listaEdificios = new ArrayList<Edificio>(Arrays.asList(edificios));
-//
-
-//        this.managers = listaManagers;
-//        this.edificios = listaEdificios;
-    }
 }
