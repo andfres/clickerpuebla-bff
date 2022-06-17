@@ -56,13 +56,11 @@ public class AuthControlador {
 
 		if(usuarioRepositorio.existsByUsername(registroDTO.getUsername())) {
 			System.out.println("ya existe nombre");
-
 			return new ResponseEntity<>("Ese nombre de usuario ya existe",HttpStatus.BAD_REQUEST);
 		}
 
 		if(usuarioRepositorio.existsByEmail(registroDTO.getEmail())) {
 			System.out.println("ya existe email");
-
 			return new ResponseEntity<>("Ese email de usuario ya existe",HttpStatus.BAD_REQUEST);
 		}
 
@@ -71,22 +69,22 @@ public class AuthControlador {
 		usuario.setUsername(registroDTO.getUsername());
 		usuario.setEmail(registroDTO.getEmail());
 		usuario.setPassword(passwordEncoder.encode(registroDTO.getPassword()));
-		Rol roles = rolRepositorio.findByNombre("ROLE_ADMIN").get();
+
+		Rol roles = rolRepositorio.findByNombre("ROLE_USER").get();
 		usuario.setRoles(Collections.singleton(roles));
 
+//		Manager[] managers = {
+//				new Manager(usuario.getEmail(), 1L, false),
+//				new Manager(usuario.getEmail(), 2L, false),
+//				new Manager(usuario.getEmail(), 3L, false),
+//				new Manager(usuario.getEmail(), 5L, false),
+//				new Manager(usuario.getEmail(), 4L, false),
+//				new Manager(usuario.getEmail(), 6L, false),
+//		};
+//		List listaManagers = new ArrayList<Manager>(Arrays.asList(managers));
+//		usuario.setManagers(listaManagers);
 
 
-		Manager[] managers = {
-				new Manager(usuario.getEmail(), 1L, false),
-				new Manager(usuario.getEmail(), 2L, false),
-				new Manager(usuario.getEmail(), 3L, false),
-				new Manager(usuario.getEmail(), 5L, false),
-				new Manager(usuario.getEmail(), 4L, false),
-				new Manager(usuario.getEmail(), 6L, false),
-		};
-		List listaManagers = new ArrayList<Manager>(Arrays.asList(managers));
-
-		usuario.setManagers(listaManagers);
 		usuarioRepositorio.save(usuario);
 
 		System.out.println("Usuario registrado exitosamente");
@@ -98,18 +96,28 @@ public class AuthControlador {
 
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getUsernameOrEmail(), loginDTO.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-
 		//obtenemos el token del jwtTokenProvider
 		String token = jwtTokenProvider.generarToken(authentication);
-
 		usuarioRepositorio.findByEmail(authentication.getName());
-
 		return ResponseEntity.ok(new JWTAuthResonseDTO(token));
 	}
 
-	@PostMapping("/iniciarSesion")
-	public ResponseEntity<RegistroRespuestaDTO> authenticateUser(@RequestBody LoginDTO loginDTO){
 
+
+
+
+
+
+
+	@PostMapping("/iniciarSesion")
+	public ResponseEntity<?> authenticateUser(@RequestBody LoginDTO loginDTO){
+
+		if(!usuarioRepositorio.existsByEmail(loginDTO.getUsernameOrEmail())) {
+			System.out.println("No existe ");
+			return new ResponseEntity<>("Email o password invalidos",HttpStatus.BAD_REQUEST);
+		}
+
+		try{
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getUsernameOrEmail(), loginDTO.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -119,7 +127,12 @@ public class AuthControlador {
 		Usuario user = usuarioRepositorio.findByEmail(authentication.getName())
 				.orElseThrow(() -> new ResourceNotFoundException2("inicarsesion", "email"));
 
-		return ResponseEntity.ok(new RegistroRespuestaDTO(token, user));
+			return ResponseEntity.ok(new RegistroRespuestaDTO(token, user));
+
+		}catch (Exception e){
+
+			return new ResponseEntity<>("Email o password invalidos",HttpStatus.BAD_REQUEST);
+		}
 	}
 
 

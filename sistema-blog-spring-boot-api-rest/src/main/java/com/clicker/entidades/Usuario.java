@@ -31,7 +31,6 @@ public class Usuario {
     private String password;
     private long dinero;
 
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 //	@JoinTable(name = "usuarios_roles",
 //			joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
 //			inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
@@ -41,12 +40,26 @@ public class Usuario {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Rol> roles = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-    private List<Edificio> edificios;
+//    @OneToMany(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+//    private List<Edificio> edificios;
+
+    @OneToMany(mappedBy = "usuario",
+            cascade = CascadeType.ALL)
+    private List<Edificio> edificios = new ArrayList<Edificio>();
+
+
+
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Manager> managers;
-    //private List<Manager> managers = new ArrayList<>();
+
+
+
+//    @OneToMany(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
+//    @JoinTable(name = "usuarios_roles",
+//			joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
+//			inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
+//	private Set<Rol> edificios ;
 
 //	private Set<Manager> managers = new HashSet<>();
 //

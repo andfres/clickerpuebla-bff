@@ -3,7 +3,6 @@ package com.clicker.entidades;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 
@@ -11,15 +10,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Slf4j
 @Table(name = "edificios")
 public class Edificio {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@EmbeddedId
+	private  IdCombinado id;
 
 	private long nivel = 1;
 
+//	@ManyToOne( cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="fk_usuario")
+	private Usuario usuario;
 
 }

@@ -16,8 +16,6 @@ public class ManagerId implements Serializable {
         this.managerID = managerID;
     }
 
-
-
     // equals() and hashCode()
 
 
