@@ -9,21 +9,14 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Data
+
 @NoArgsConstructor
 @EqualsAndHashCode
+@AllArgsConstructor
 @Embeddable
 public class IdCombinado implements Serializable {
 
-    private Long userID;
-    private Long elmentID;
+    private String userEmail;
+    private int elmentID;
 
-
-// equals() and hashCode()
-
-
-    public IdCombinado(Long userID, Long elmentID) {
-        this.userID = userID;
-        this.elmentID = elmentID;
-    }
 }

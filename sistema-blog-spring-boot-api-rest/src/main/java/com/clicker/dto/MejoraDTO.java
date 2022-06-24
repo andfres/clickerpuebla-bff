@@ -1,28 +1,19 @@
-package com.clicker.entidades;
+package com.clicker.dto;
 
+import com.clicker.entidades.IdCombinado;
+import com.clicker.entidades.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "managers")
-public class Mejora {
 
-    @EmbeddedId
-    private  IdCombinado id;
+public class MejoraDTO {
 
+    private int id;
     private boolean adquirida = false;
-    private String velocidad;
-    private int cantidad;
-    private String aplica;
+    private ParametrosDTO parametros;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="fk_usuario")
-    private Usuario usuario;
+
 }
-

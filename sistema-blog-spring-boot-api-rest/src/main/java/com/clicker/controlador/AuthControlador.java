@@ -3,6 +3,7 @@ package com.clicker.controlador;
 import java.util.*;
 
 import com.clicker.dto.RegistroRespuestaDTO;
+import com.clicker.entidades.Edificio;
 import com.clicker.entidades.Manager;
 import com.clicker.excepciones.ResourceNotFoundException2;
 import com.clicker.repositorio.UsuarioRepositorio;
@@ -51,9 +52,6 @@ public class AuthControlador {
 	@PostMapping("/registrar")
 	public ResponseEntity<?> registrarUsuario(@RequestBody RegistroDTO registroDTO){
 
-		System.out.println("------------------------------------------------");
-
-
 		if(usuarioRepositorio.existsByUsername(registroDTO.getUsername())) {
 			System.out.println("ya existe nombre");
 			return new ResponseEntity<>("Ese nombre de usuario ya existe",HttpStatus.BAD_REQUEST);
@@ -73,37 +71,11 @@ public class AuthControlador {
 		Rol roles = rolRepositorio.findByNombre("ROLE_USER").get();
 		usuario.setRoles(Collections.singleton(roles));
 
-//		Manager[] managers = {
-//				new Manager(usuario.getEmail(), 1L, false),
-//				new Manager(usuario.getEmail(), 2L, false),
-//				new Manager(usuario.getEmail(), 3L, false),
-//				new Manager(usuario.getEmail(), 5L, false),
-//				new Manager(usuario.getEmail(), 4L, false),
-//				new Manager(usuario.getEmail(), 6L, false),
-//		};
-//		List listaManagers = new ArrayList<Manager>(Arrays.asList(managers));
-//		usuario.setManagers(listaManagers);
-
-
 		usuarioRepositorio.save(usuario);
 
 		System.out.println("Usuario registrado exitosamente");
 		return new ResponseEntity<>("Usuario registrado exitosamente",HttpStatus.OK);
 	}
-
-	@PostMapping("/iniciarSesionViejo")
-	public ResponseEntity<JWTAuthResonseDTO> authenticateUserViejo(@RequestBody LoginDTO loginDTO){
-
-		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getUsernameOrEmail(), loginDTO.getPassword()));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		//obtenemos el token del jwtTokenProvider
-		String token = jwtTokenProvider.generarToken(authentication);
-		usuarioRepositorio.findByEmail(authentication.getName());
-		return ResponseEntity.ok(new JWTAuthResonseDTO(token));
-	}
-
-
-
 
 
 
@@ -123,6 +95,8 @@ public class AuthControlador {
 
 		//obtenemos el token del jwtTokenProvider
 		String token = jwtTokenProvider.generarToken(authentication);
+
+		System.out.println(token);
 
 		Usuario user = usuarioRepositorio.findByEmail(authentication.getName())
 				.orElseThrow(() -> new ResourceNotFoundException2("inicarsesion", "email"));

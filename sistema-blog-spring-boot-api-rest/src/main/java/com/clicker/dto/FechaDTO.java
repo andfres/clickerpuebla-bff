@@ -3,8 +3,7 @@ package com.clicker.dto;
 import lombok.Data;
 
 @Data
-public class ParametrosDTO {
-    public String tipo;
-    public int cantidad;
-    public String aplica;
+public class FechaDTO {
+    public String dia;
+    public String hora;
 }

@@ -2,20 +2,20 @@ package com.clicker.excepciones;
 
 import org.springframework.http.HttpStatus;
 
-public class BlogAppException extends RuntimeException {
+public class AppException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
 	private HttpStatus estado;
 	private String mensaje;
 
-	public BlogAppException(HttpStatus estado, String mensaje) {
+	public AppException(HttpStatus estado, String mensaje) {
 		super();
 		this.estado = estado;
 		this.mensaje = mensaje;
 	}
 
-	public BlogAppException(HttpStatus estado, String mensaje, String mensaje1) {
+	public AppException(HttpStatus estado, String mensaje, String mensaje1) {
 		super();
 		this.estado = estado;
 		this.mensaje = mensaje;

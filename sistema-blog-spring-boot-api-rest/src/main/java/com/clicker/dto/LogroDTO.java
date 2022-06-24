@@ -1,19 +1,14 @@
 package com.clicker.dto;
 
-import com.clicker.entidades.IdCombinado;
-import com.clicker.entidades.Usuario;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import javax.persistence.*;
 
 @Data
 
-public class MejoraDTO {
+public class LogroDTO {
 
     private int id;
-    private boolean adquirida = false;
-    private ParametrosDTO parametros;
+    private boolean logrado = false;
+    private FechaDTO fecha;
 
 
 }

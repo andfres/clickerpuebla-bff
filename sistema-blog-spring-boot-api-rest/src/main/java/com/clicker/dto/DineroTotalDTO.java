@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class DineroDTO {
-
+public class DineroTotalDTO {
 	private Long Dinero;
-
 
 }

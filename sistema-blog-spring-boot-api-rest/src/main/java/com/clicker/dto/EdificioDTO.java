@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class EdificioDTO {
 
-	private Long id_pasado;
-	private Long nivel;
+	private int id;
+	private int nivel;
 
 }

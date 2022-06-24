@@ -1,12 +1,13 @@
 package com.clicker.entidades;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import lombok.Data;
 
-@Entity(name = "Post")
-@Table(name = "post")
-public class Parametros {
+
+@Data
+public class ParametrosDTO {
     public String tipo;
     public int cantidad;
+
+
 }

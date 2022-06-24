@@ -16,11 +16,9 @@ public class Edificio {
 	@EmbeddedId
 	private  IdCombinado id;
 
-	private long nivel = 1;
+	private int nivel = 1;
 
-//	@ManyToOne( cascade = CascadeType.ALL)
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="fk_usuario")
 	private Usuario usuario;
-
 }

@@ -1,7 +1,9 @@
 package com.clicker.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import java.util.*;
 
@@ -9,6 +11,10 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "usuarios",
         uniqueConstraints = {
@@ -16,11 +22,8 @@ import javax.validation.constraints.Email;
                 @UniqueConstraint(columnNames = {"email"})})
 
 public class Usuario {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @GeneratedValue(strategy=GenerationType.SEQUENCE)
-
     private long id;
 
     private String nombre;
@@ -30,28 +33,29 @@ public class Usuario {
     private String email;
     private String password;
     private long dinero;
-
-//	@JoinTable(name = "usuarios_roles",
-//			joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
-//			inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
-//	private Set<Rol> roles = new HashSet<>();
+    private long dineroTotal;
 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Rol> roles = new HashSet<>();
 
-//    @OneToMany(fetch = FetchType.LAZY , cascade = CascadeType.ALL)
-//    private List<Edificio> edificios;
-
     @OneToMany(mappedBy = "usuario",
             cascade = CascadeType.ALL)
     private List<Edificio> edificios = new ArrayList<Edificio>();
 
+    @OneToMany(mappedBy = "usuario",
+            cascade = CascadeType.ALL)
+    private List<Manager> managers = new ArrayList<Manager>();
+
+    @OneToMany(mappedBy = "usuario",
+            cascade = CascadeType.ALL)
+    private List<Mejora> mejoras = new ArrayList<Mejora>();
+
+    @OneToMany(mappedBy = "usuario",
+            cascade = CascadeType.ALL)
+    private List<Logro> logros = new ArrayList<Logro>();
 
 
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Manager> managers;
 
 
 
@@ -65,7 +69,6 @@ public class Usuario {
 //
 //	@ManyToMany(fetch = FetchType.EAGER)
 //	private Set<Rol> roles = new HashSet<>();
-
 
 
 }

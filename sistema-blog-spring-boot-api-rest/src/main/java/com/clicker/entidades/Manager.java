@@ -3,29 +3,25 @@ package com.clicker.entidades;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "managers")
-@IdClass(ManagerId.class)
 public class Manager {
 
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@Column(name="MANAGER_ID", unique = true, nullable = false)
-//	private long id;
-
-    @Id
-    private String userEmail;
-    @Id
-    private Long managerID;
+    @EmbeddedId
+    private  IdCombinado id;
 
     private boolean contratado = false;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="fk_usuario")
+    private Usuario usuario;
+
 
 
 }

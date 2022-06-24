@@ -10,13 +10,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "managers")
-public class Manager {
+@Table(name = "logros")
+public class Logro {
 
     @EmbeddedId
     private  IdCombinado id;
 
-    private boolean contratado = false;
+    private boolean logrado = false;
+    public String dia;
+    public String hora;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="fk_usuario")

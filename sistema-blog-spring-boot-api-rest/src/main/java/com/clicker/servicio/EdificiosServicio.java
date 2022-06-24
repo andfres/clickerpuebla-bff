@@ -1,6 +1,6 @@
 package com.clicker.servicio;
 
-import com.clicker.entidades.Edificio3;
+import com.clicker.entidades.Edificio;
 import com.clicker.repositorio.EdificioRepositorio;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +17,12 @@ public class EdificiosServicio {
     EdificioRepositorio edificioRepositorio;
 
     @Transactional
-    public Edificio3 guardarEdificio(Edificio3 edificio) {
+    public Edificio guardarEdificio(Edificio edificio) {
         return edificioRepositorio.save(edificio);
     }
+
+
+
 
 
 }
