@@ -1,7 +1,6 @@
 package com.clicker.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
 import lombok.Data;
 
 
@@ -11,10 +10,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "usuarios",
         uniqueConstraints = {

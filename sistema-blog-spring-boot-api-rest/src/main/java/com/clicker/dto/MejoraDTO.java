@@ -8,6 +8,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
+@AllArgsConstructor
 
 public class MejoraDTO {
 

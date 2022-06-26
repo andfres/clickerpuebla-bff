@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Data
+@AllArgsConstructor
+
 public class ManagerDTO {
 
     private int id;
